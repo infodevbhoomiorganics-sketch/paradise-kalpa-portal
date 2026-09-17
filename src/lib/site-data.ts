@@ -1,12 +1,12 @@
-import exterior from "@/assets/image.png.asset.json";
-import bathroom from "@/assets/image-2.png.asset.json";
-import balcony from "@/assets/image-3.png.asset.json";
-import windowView from "@/assets/image-4.png.asset.json";
-import room from "@/assets/image-5.png.asset.json";
-import panorama from "@/assets/image-6.png.asset.json";
-import morningTea from "@/assets/image-7.png.asset.json";
-import valley from "@/assets/image-8.png.asset.json";
-import orchard from "@/assets/image-9.png.asset.json";
+import exterior from "@/assets/image.png";
+import bathroom from "@/assets/image-2.png";
+import balcony from "@/assets/image-3.png";
+import windowView from "@/assets/image-4.png";
+import room from "@/assets/image-5.png";
+import panorama from "@/assets/image-6.png";
+import morningTea from "@/assets/image-7.png";
+import valley from "@/assets/image-8.png";
+import orchard from "@/assets/image-9.png";
 
 export const details = {
   name: "Paradise Homestay Kalpa",
@@ -19,15 +19,15 @@ export const details = {
 };
 
 export const photos = {
-  exterior: exterior.url,
-  bathroom: bathroom.url,
-  balcony: balcony.url,
-  windowView: windowView.url,
-  room: room.url,
-  panorama: panorama.url,
-  morningTea: morningTea.url,
-  valley: valley.url,
-  orchard: orchard.url,
+  exterior: exterior,
+  bathroom: bathroom,
+  balcony: balcony,
+  windowView: windowView,
+  room: room,
+  panorama: panorama,
+  morningTea: morningTea,
+  valley: valley,
+  orchard: orchard,
 };
 
 export const gallery = [
