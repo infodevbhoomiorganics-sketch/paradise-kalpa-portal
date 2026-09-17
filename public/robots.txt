@@ -12,3 +12,5 @@ Allow: /
 
 User-agent: *
 Allow: /
+
+# Sitemap URL will be added when the public domain is connected.
