@@ -1,24 +1,37 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { ArrowDown, ArrowRight, Heart, MapPin, Mountain, Star, UtensilsCrossed } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { BookingBand, IconFeature, SectionHeading } from "@/components/site-sections";
+import { details, pageHead, photos, whatsappUrl } from "@/lib/site-data";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
+const description = "Stay at Paradise Homestay Kalpa in Rakpa for wooden mountain-view rooms, homemade Kinnauri food and sweeping Kinner Kailash views.";
 export const Route = createFileRoute("/")({
-  component: Index,
+  head: () => ({ ...pageHead("Paradise Homestay Kalpa | Mountain View Stay", description, "/"), scripts: [{ type: "application/ld+json", children: JSON.stringify({ "@context": "https://schema.org", "@type": ["LodgingBusiness", "LocalBusiness"], name: details.name, telephone: details.phone, address: { "@type": "PostalAddress", streetAddress: "Rakpa, House No. 56", addressLocality: "Kalpa", addressRegion: "Himachal Pradesh", postalCode: "172108", addressCountry: "IN" }, aggregateRating: { "@type": "AggregateRating", ratingValue: details.rating, reviewCount: details.reviews }, priceRange: "₹₹" }) }] }),
+  component: HomePage,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
-function Index() {
-  return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
-  );
+function HomePage() {
+  return <>
+    <section className="relative min-h-[92vh] overflow-hidden bg-header pt-20 text-header-foreground">
+      <img src={photos.balcony} alt="Kinner Kailash snow peaks seen from Paradise Homestay Kalpa balcony" className="absolute inset-0 size-full object-cover" />
+      <div className="absolute inset-0 bg-hero-overlay" />
+      <div className="relative mx-auto flex min-h-[calc(92vh-5rem)] max-w-[1440px] flex-col justify-end px-5 pb-10 sm:px-8 lg:px-12">
+        <div className="reveal max-w-5xl"><div className="mb-6 flex flex-wrap items-center gap-x-5 gap-y-2 text-xs uppercase tracking-[0.15em] text-header-muted"><span className="flex items-center gap-2"><MapPin className="size-4 text-gold" /> Rakpa · Kalpa</span><span className="flex items-center gap-2"><Star className="size-4 fill-gold text-gold" /> {details.rating} from {details.reviews} reviews</span></div><h1 className="text-balance font-display text-6xl leading-[0.9] sm:text-8xl lg:text-[7.5rem]">Stay above<br />the mountains.</h1><p className="mt-7 max-w-xl text-base leading-7 text-header-muted sm:text-lg">A quiet wooden homestay in Kalpa, where every morning begins with Kinner Kailash at your window.</p><div className="mt-8 flex flex-wrap gap-3"><Button asChild size="lg" className="h-12 rounded-full bg-gold px-6 text-header hover:bg-gold/90"><a href={whatsappUrl()} target="_blank" rel="noreferrer">Check availability <ArrowRight /></a></Button><Button asChild size="lg" variant="outline" className="h-12 rounded-full border-header-line bg-header-soft px-6 text-header-foreground hover:bg-header-soft hover:text-header-foreground"><Link to="/stay">Explore the stay</Link></Button></div></div>
+        <div className="mt-10 flex items-end justify-between border-t border-header-line pt-5"><div><span className="text-xs text-header-muted">Stays from</span><span className="ml-3 font-display text-2xl">{details.price}<small className="font-sans text-xs text-header-muted"> / night*</small></span></div><ArrowDown className="hidden size-5 text-gold sm:block" /></div>
+      </div>
+    </section>
+
+    <section className="bg-background py-24 lg:py-32"><div className="mx-auto grid max-w-[1440px] gap-14 px-5 sm:px-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:px-12"><div><SectionHeading eyebrow="A rare point of view" title="Come for the peaks. Stay for the feeling." text="Set in Rakpa, away from the rush, Paradise is an intimate family homestay shaped by timber rooms, orchard seasons and genuine mountain hospitality." /><Button asChild variant="link" className="mt-6 h-auto p-0 text-gold-dark"><Link to="/about">Our story <ArrowRight /></Link></Button></div><div className="grid grid-cols-2 gap-3"><img src={photos.exterior} alt="Paradise Homestay exterior" className="mt-12 aspect-[3/4] w-full object-cover" /><img src={photos.morningTea} alt="Morning tea with the mountain view" className="aspect-[3/4] w-full object-cover" /></div></div></section>
+
+    <section className="bg-header py-24 text-header-foreground lg:py-32"><div className="mx-auto max-w-[1440px] px-5 sm:px-8 lg:px-12"><SectionHeading eyebrow="The Paradise experience" title="Simple comforts, extraordinary setting." text="Everything you need for slow days in the high Himalaya." /><div className="mt-14 grid gap-x-10 md:grid-cols-3"><IconFeature icon={<Mountain />} title="Unbroken mountain views" text="Balconies and windows open towards the Kinner Kailash range and the vast Sutlej valley." /><IconFeature icon={<UtensilsCrossed />} title="Food from the home" text="Fresh, comforting Himachali and Kinnauri meals prepared with care and seasonal produce." /><IconFeature icon={<Heart />} title="Warm, local hospitality" text="A personal stay rooted in the rhythms, stories and generous welcome of Kinnaur." /></div></div></section>
+
+    <section className="grid lg:grid-cols-2"><img src={photos.room} alt="Wooden mountain-view room" className="min-h-[520px] size-full object-cover" /><div className="flex items-center bg-card px-5 py-20 sm:px-12 lg:px-20"><div><p className="eyebrow">Rest well</p><h2 className="mt-4 max-w-xl font-display text-5xl leading-[1.02] sm:text-6xl">Wood-warm rooms. Snow-peak mornings.</h2><p className="mt-6 max-w-lg leading-8 text-muted-foreground">Comfortable wooden interiors, clean attached baths with hot water, and a view that quietly changes with the light.</p><div className="mt-8 flex items-center gap-8 border-y border-border py-5 text-sm"><span><strong className="block font-display text-2xl">{details.price}</strong>starting rate*</span><span><strong className="block font-display text-2xl">{details.rating}/5</strong>guest rating</span></div><Button asChild className="mt-8 rounded-full"><Link to="/stay">View the rooms <ArrowRight /></Link></Button></div></div></section>
+
+    <section className="py-24 lg:py-32"><div className="mx-auto max-w-[1440px] px-5 sm:px-8 lg:px-12"><SectionHeading align="center" eyebrow="Nearby wonders" title="Kalpa, at your own pace." /><div className="mt-14 grid gap-3 md:grid-cols-3"><HomeAttraction image={photos.panorama} title="Kinner Kailash views" text="Watch the sacred range change from rose-gold dawn to deep blue dusk." /><HomeAttraction image={photos.valley} title="Kalpa village walks" text="Wander through traditional villages, forest paths and quiet mountain roads." /><HomeAttraction image={photos.orchard} title="Kinnaur orchards" text="Experience the celebrated apple country in its green and harvest seasons." /></div></div></section>
+
+    <section className="bg-muted py-24"><div className="mx-auto max-w-4xl px-5 text-center"><div className="flex justify-center gap-1">{Array.from({length:5}).map((_,i)=><Star key={i} className="size-4 fill-gold text-gold" />)}</div><blockquote className="mt-8 font-display text-4xl leading-tight sm:text-5xl">“A home in the mountains, with views you remember long after the road back.”</blockquote><p className="mt-6 text-sm text-muted-foreground">Guest impression · {details.rating}/5 from {details.reviews} reviews</p></div></section>
+    <BookingBand />
+  </>;
 }
+
+function HomeAttraction({ image, title, text }: { image: string; title: string; text: string }) { return <article className="group relative min-h-[460px] overflow-hidden"><img src={image} alt={title} className="absolute inset-0 size-full object-cover transition-transform duration-700 group-hover:scale-105" /><div className="absolute inset-0 bg-hero-overlay" /><div className="absolute inset-x-0 bottom-0 p-7 text-header-foreground"><h3 className="font-display text-3xl">{title}</h3><p className="mt-2 text-sm leading-6 text-header-muted">{text}</p></div></article>; }
