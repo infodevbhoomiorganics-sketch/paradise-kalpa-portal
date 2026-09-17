@@ -12,6 +12,7 @@ import { useEffect, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { FloatingWhatsApp, SiteFooter, SiteHeader } from "@/components/site-shell";
+import { ScrollProgressBar } from "@/components/scroll-progress";
 
 function NotFoundComponent() {
   return (
@@ -122,6 +123,7 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
+      <ScrollProgressBar />
       <SiteHeader />
       <main><Outlet /></main>
       <SiteFooter />

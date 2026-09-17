@@ -75,5 +75,5 @@ export function SiteFooter() {
 }
 
 export function FloatingWhatsApp() {
-  return <Button asChild size="icon" className="fixed bottom-5 right-5 z-30 size-13 rounded-full bg-whatsapp text-whatsapp-foreground shadow-xl hover:bg-whatsapp/90" title="Chat on WhatsApp"><a href={whatsappUrl()} target="_blank" rel="noreferrer" aria-label="Chat with Paradise Homestay on WhatsApp"><MessageCircle className="size-6" /></a></Button>;
+  return <Button asChild size="icon" className="fixed bottom-5 right-5 z-30 size-13 rounded-full bg-whatsapp text-whatsapp-foreground shadow-xl hover:bg-whatsapp/90 pulse-glow" title="Chat on WhatsApp"><a href={whatsappUrl()} target="_blank" rel="noreferrer" aria-label="Chat with Paradise Homestay on WhatsApp"><MessageCircle className="size-6" /></a></Button>;
 }

@@ -186,3 +186,88 @@
   @keyframes reveal-up { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
   .reveal { animation: reveal-up 700ms ease-out both; }
 }
+
+/* Marquee banner animation */
+@keyframes marquee-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.marquee-track {
+  width: max-content;
+  animation: marquee-scroll 40s linear infinite;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+.marquee-content {
+  animation: marquee-scroll 40s linear infinite;
+}
+
+/* Floating animation for decorative elements */
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+}
+
+.float-slow { animation: float-slow 6s ease-in-out infinite; }
+
+/* Shimmer effect for gold accents */
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+.text-shimmer {
+  background: linear-gradient(90deg, var(--gold-dark), var(--gold), var(--gold-dark));
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 4s linear infinite;
+}
+
+/* Scroll-triggered scale-in for images */
+@keyframes scale-in {
+  from { opacity: 0; transform: scale(0.92); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* Gradient shift for background sections */
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.bg-animated-gradient {
+  background: linear-gradient(135deg, oklch(0.18 0.025 145), oklch(0.14 0.03 150), oklch(0.18 0.025 145));
+  background-size: 200% 200%;
+  animation: gradient-shift 12s ease infinite;
+}
+
+/* Slow zoom for hero images on scroll */
+@keyframes slow-zoom {
+  from { transform: scale(1); }
+  to { transform: scale(1.12); }
+}
+
+.hero-zoom {
+  animation: slow-zoom 20s ease-out forwards;
+}
+
+/* Pulse glow for WhatsApp button */
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 0 0 oklch(0.66 0.17 150 / 40%); }
+  50% { box-shadow: 0 0 0 12px oklch(0.66 0.17 150 / 0%); }
+}
+
+.pulse-glow { animation: pulse-glow 2.5s ease-in-out infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track, .marquee-content, .float-slow, .text-shimmer,
+  .bg-animated-gradient, .hero-zoom, .pulse-glow {
+    animation: none !important;
+  }
+}
